@@ -25,14 +25,17 @@ jobs:
           modules: qtmultimedia
 
       - name: Configurer le projet
-        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
 
       - name: Compiler
         run: cmake --build build --config Release
 
-      - name: Recuperer l'executable
+      - name: Preparer les bibliotheques Qt
+        run: windeployqt --release --compiler-runtime build/Release/ToneGenerator5.exe
+
+      - name: Publier le programme Windows
         uses: actions/upload-artifact@v4
         with:
           name: ToneGenerator5-Windows
-          path: build/ToneGenerator5.exe
+          path: build/Release/**
           if-no-files-found: error
