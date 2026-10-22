@@ -74,7 +74,7 @@ protected:
             double value = 0.0;
 
             if (enabled[channel]) {
-                value = std::sin(phases[channel] * 2.0 * M_PI)
+                value = std::sin(phases[channel] * 3.14159265358979323846
                         * volumes[channel];
 
                 phases[channel] +=
